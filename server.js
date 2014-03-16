@@ -12,6 +12,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 // Application Config
 var config = require('./lib/config/config');
 
+// Initialize AWS
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./lib/config/aws.json');
+
 var app = express();
 
 // Express settings
