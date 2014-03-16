@@ -17,6 +17,7 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/ng-file-upload/angular-file-upload.js',
+      'app/thirdParty/xml2json/xml2json.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/client/spec/**/*.js'
