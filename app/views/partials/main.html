@@ -8,10 +8,19 @@
 </div>
 
 <div class="row marketing">
-  <div ng-repeat="thing in awesomeThings">
-      <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
-  </div>
+    <div class="form-group">
+        <label for="photos">Input Picture</label>
+        <input id="photos" type="file" class="btn" ng-file-select="onFileSelect($files)" multiple>
+        <p class="help-block">Select pictures</p>
+        <div ng-repeat="file in files" class="container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width:{{file.progress}}%;">
+                    {{file.name}} : {{file.progress}}
+                </div>
+            </div>
+            <button class="btn btn-ttc" type="button" ng-click="abort($index)" ng-show="file.progress != 100">Abort</button>
+        </div>
+    </div>
 </div>
 
 <div class="footer">
