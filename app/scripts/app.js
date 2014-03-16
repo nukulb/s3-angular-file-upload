@@ -3,7 +3,8 @@
 angular.module('s3UploadApp', [
   'ngCookies',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'angularFileUpload'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -14,6 +15,6 @@ angular.module('s3UploadApp', [
       .otherwise({
         redirectTo: '/'
       });
-      
+
     $locationProvider.html5Mode(true);
   });
