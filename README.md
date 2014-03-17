@@ -7,17 +7,18 @@ Example of S3 file upload using ng-file-upload, angular, node and aws-sdk.
 Coming soon.
 
 ##### Technology Stack
-Server
+###### Server
 
 Nodejs as a backend server.
 Expressjs as a wrapper on HTTP for nodejs to process.
 AWS-SDK for talking with the Amazon server
 
-Frontend
+###### Frontend
 
 AngularJS for frontend modularity and one page app.
 ng-file-upload for multipart file uploads to S3
-Testing
+
+###### Testing
 
 Jasmine tests run through karma on the frontend.
 Mocha tests run through grunt for the backend.
@@ -25,33 +26,34 @@ Mocha tests run through grunt for the backend.
 ##### Getting started
 
 1. Install Nodejs
-    Use installer http://nodejs.org/
-    Or use macports sudo port install nodejs
-    Or use Homebrew brew install node
+    1. Use installer http://nodejs.org/
+    2. Or use macports sudo port install nodejs
+    3. Or use Homebrew brew install node
 2. Run the following commands in the terminal
     ```
     node -v
     npm -v
     ```
-    Make sure both the above commands were valid and printed out node and npm versions.
-    Set user account as owner of the /usr/local sudo chown -R $USER /usr/local
-3. Clone the repo and cd into the directory where repo is cloned.
-4. Run the following commands
+Make sure both the above commands were valid and printed out node and npm versions.
+3. Set user account as owner of the ```/usr/local sudo chown -R $USER /usr/local```
+4. Clone the repo and cd into the directory where repo is cloned.
+5. Run the following commands
 ```
 npm install -g yo bower generator-angular-fullstack 
 npm install
 bower install
 ```
-5. In the file lib/config/aws.json enter your AWS credentials.
-6. Open your AWS account and go to the management console.
-7. Click on S3
-8. Create a new S3 bucket called 'mybucket-dev'
-9. Change the permissions of this bucket by clicking the properties tab under 'mybucket-dev'
-10. Click 'Add more permissions'.
-11. Under Grentee list Everyone and check list and upload/delete.
-12. Then click 'Add CORS configurgation'.
-13. Copy following into the configuration
+6. In the file lib/config/aws.json enter your AWS credentials.
+7. Open your AWS account and go to the management console.
+8. Click on S3
+9. Create a new S3 bucket called 'mybucket-dev'
+10. Change the permissions of this bucket by clicking the properties tab under 'mybucket-dev'
+11. Click 'Add more permissions'.
+12. Under Grentee list Everyone and check list and upload/delete.
+13. Then click 'Add CORS configurgation'.
+14. Copy following into the configuration
       ```
+
         <?xml version="1.0" encoding="UTF-8"?>
           <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
               <CORSRule>
@@ -62,20 +64,18 @@ bower install
                   <AllowedHeader>*</AllowedHeader>
               </CORSRule>
           </CORSConfiguration>
+          
       ```
-14. Save the configuration.
+15. Save the configuration.
 
 
 ##### Now you are ready to run your server and upload some files.
-1. ```grunt serve```
-2. The above command should open the browser.
-3. If the browser doesn't open on its own, you can browse to ```http://localhost:9000/```
+1. To launch the server ```grunt serve```
+2. If the browser doesn't open on its own, you can browse to ```http://localhost:9000/```
 
 ##### Testing
-To run the tests simply run
-```
-grunt test
-```
+To run the tests simply run ```grunt test```
+
 
 
 
