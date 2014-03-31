@@ -6,15 +6,21 @@ angular.module('s3UploadApp', [
   'ngRoute',
   'angularFileUpload'
 ])
-  .config(function ($routeProvider, $locationProvider) {
+.config(function ($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/', {
+    .when('/', {
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
-      .otherwise({
+    .otherwise({
         redirectTo: '/'
       });
 
     $locationProvider.html5Mode(true);
+  })
+.run(function ($rootScope, $location, $http) {
+
+    $http.get('/api/config').success(function(config) {
+        $rootScope.config = config;
+      });
   });

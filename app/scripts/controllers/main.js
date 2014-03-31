@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('s3UploadApp')
-    .controller('MainCtrl', function ($scope, $http, $location, $upload) {
+    .controller('MainCtrl', function ($scope, $http, $location, $upload, $rootScope) {
         $scope.imageUploads = [];
         $scope.abort = function(index) {
             $scope.upload[index].abort();
@@ -18,8 +18,8 @@ angular.module('s3UploadApp')
                     $http.get('/api/s3Policy?mimeType='+ file.type).success(function(response) {
                         var s3Params = response;
                         $scope.upload[i] = $upload.upload({
-                            url: 'https://mybucket-dev.s3.amazonaws.com/',
-                                method: 'POST',
+                            url: 'https://' + $rootScope.config.awsConfig.bucket + '.s3.amazonaws.com/',
+                            method: 'POST',
                             data: {
                                 'key' : 's3UploadExample/'+ Math.round(Math.random()*10000) + '$$' + file.name,
                                 'acl' : 'public-read',
@@ -44,7 +44,7 @@ angular.module('s3UploadApp')
                                 $scope.imageUploads.push(parsedData);
 
                             } else {
-                                console.log('Upload Failed');
+                                alert('Upload Failed');
                             }
                         }, null, function(evt) {
                             file.progress =  parseInt(100.0 * evt.loaded / evt.total);

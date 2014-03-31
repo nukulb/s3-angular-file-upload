@@ -11,12 +11,16 @@ describe('Controller: MainCtrl', function () {
 
     // Initialize the controller and a mock scope
     beforeEach(inject(function($injector) {
-        $httpBackend = $injector.get('$httpBackend');
-
-        //TODO: Add back when auth is working
-        //$httpBackend.when('GET', '/auth.py').respond({userId: 'userX'}, {'A-Token': 'xxx'});
         $rootScope = $injector.get('$rootScope');
         $location = $injector.get('$location');
+        $httpBackend = $injector.get('$httpBackend');
+
+        $httpBackend.expectGET('/api/config').respond({
+            awsConfig: {
+                bucket: 'mybucket-dev'
+            }
+        });
+        $httpBackend.flush();
         var $controller = $injector.get('$controller');
         createController = function() {
             return $controller('MainCtrl', {'$scope' : $rootScope });
@@ -25,8 +29,6 @@ describe('Controller: MainCtrl', function () {
     }));
 
     afterEach(function() {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
     });
 
     it('should get Policy for one file', function () {

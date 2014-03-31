@@ -11,7 +11,6 @@ Coming soon.
 
 Nodejs as a backend server.
 Expressjs as a wrapper on HTTP for nodejs to process.
-AWS-SDK for talking with the Amazon server
 
 ###### Frontend
 
@@ -39,14 +38,14 @@ Make sure both the above commands were valid and printed out node and npm versio
 4. Clone the repo and cd into the directory where repo is cloned.
 5. Run the following commands
 ```
-npm install -g yo bower generator-angular-fullstack 
+npm install -g yo bower generator-angular-fullstack
 npm install
 bower install
 ```
 6. In the file lib/config/aws.json enter your AWS credentials.
 7. Open your AWS account and go to the management console.
 8. Click on S3
-9. Create a new S3 bucket called 'mybucket-dev'
+9. Create a new S3 bucket, for example purposes lets say 'mybucket-dev'. You will need a unique name.
 10. Change the permissions of this bucket by clicking the properties tab under 'mybucket-dev'
 11. Click 'Add more permissions'.
 12. Under Grentee list Everyone and check list and upload/delete.
@@ -64,9 +63,11 @@ bower install
                   <AllowedHeader>*</AllowedHeader>
               </CORSRule>
           </CORSConfiguration>
-          
+
       ```
 15. Save the configuration.
+16. Save the bucket name that you just created in the lib/config/aws.json
+
 
 
 ##### Now you are ready to run your server and upload some files.
