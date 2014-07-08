@@ -8,7 +8,7 @@
     "angular-cookies": "1.2.11",
     "angular-sanitize": "1.2.11",
     "angular-route": "1.2.11",
-    "ng-file-upload": "~1.2.11",
+    "ng-file-upload": "1.4.0",
     "bootstrap": "~3.1.1"
   },
   "devDependencies": {
