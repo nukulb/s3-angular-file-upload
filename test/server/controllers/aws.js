@@ -1,6 +1,7 @@
 'use strict';
 
 var aws = require(__dirname + '/../../../lib/controllers/aws.js'),
+    aws_config = require(__dirname + '/../../../lib/config/aws.json'),
     assert = require('assert');
 
 describe('controller', function () {
@@ -34,7 +35,7 @@ describe('controller', function () {
             assert.equal(parsedDecodedBuf.conditions[0][1], '$key');
             assert.equal(parsedDecodedBuf.conditions[0][2], 's3UploadExample/');
 
-            assert.equal(parsedDecodedBuf.conditions[1].bucket, 'mybucket-dev');
+            assert.equal(parsedDecodedBuf.conditions[1].bucket, aws_config.bucket);
 
             assert.equal(parsedDecodedBuf.conditions[2].acl, 'public-read');
 
