@@ -32,12 +32,9 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('should get Policy for one file', function () {
-        var files = [
-            {
-                type: 'image/jpeg',
-                name: 'abc.jpeg'
-            }
-        ];
+        var file = new Blob(['<content>'], {type: 'image/jpeg'})
+        file.name = 'abc.jpeg'
+        var files = [file];
 
         createController();
 
@@ -64,16 +61,13 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('should get Policy for multiple files', function () {
-        var files = [
-            {
-                type: 'image/jpeg',
-                name: 'abc.jpeg'
-            },
-            {
-                type: 'image/bmp',
-                name: 'xyz.bmp'
-            }
-        ];
+        var file1 = new Blob(['<content>'], {type: 'image/jpeg'});
+        file1.name = 'abc.jpeg';
+
+        var file2 = new Blob(['<content>'], {type: 'image/bmp'});
+        file2.name = 'xyz.bmp';
+
+        var files = [file1, file2];
 
         createController();
         files.forEach(function (file) {
@@ -104,16 +98,13 @@ describe('Controller: MainCtrl', function () {
 
     describe('Progress and Abort', function () {
         beforeEach(function () {
-            var files = [
-                {
-                    type: 'image/jpeg',
-                    name: 'abc.jpeg'
-                },
-                {
-                    type: 'image/bmp',
-                    name: 'xyz.bmp'
-                }
-            ];
+            var file1 = new Blob(['<content>'], {type: 'image/jpeg'});
+            file1.name = 'abc.jpeg';
+
+            var file2 = new Blob(['<content>'], {type: 'image/bmp'});
+            file2.name = 'xyz.bmp';
+
+            var files = [file1, file2];
 
             createController();
             files.forEach(function (file) {
