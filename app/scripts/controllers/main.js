@@ -30,7 +30,9 @@ angular.module('s3UploadApp')
                                 'Signature' : s3Params.s3Signature
                             },
                             file: file,
-                        }).then(function(response) {
+                        });
+                        $scope.upload[i]
+                        .then(function(response) {
                             file.progress = parseInt(100);
                             if (response.status === 201) {
                                 var data = xml2json.parser(response.data),
