@@ -20,6 +20,12 @@ angular.module('s3UploadApp')
                         $scope.upload[i] = $upload.upload({
                             url: 'https://' + $rootScope.config.awsConfig.bucket + '.s3.amazonaws.com/',
                             method: 'POST',
+                            transformRequest: function (data, headersGetter) {
+                                //Headers change here
+                                var headers = headersGetter();
+                                delete headers['Authorization'];
+                                return data;
+                            },
                             data: {
                                 'key' : 's3UploadExample/'+ Math.round(Math.random()*10000) + '$$' + file.name,
                                 'acl' : 'public-read',
