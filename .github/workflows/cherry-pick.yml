@@ -6,15 +6,9 @@ on:
       releases:
         description: 'Release numbers (space-separated, e.g. 3.2.0 3.3.0)'
         required: true
-      new_branch:
-        description: 'New branch name prefix'
-        required: true
       commits:
         description: 'Commit hashes (space-separated)'
         required: true
-      reviewers:
-        description: 'Reviewer usernames (comma-separated, optional)'
-        required: false
 
 jobs:
   cherry-pick:
@@ -36,12 +30,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           RELEASES="${{ github.event.inputs.releases }}"
-          NEW_BRANCH="${{ github.event.inputs.new_branch }}"
           COMMITS="${{ github.event.inputs.commits }}"
-          REVIEWERS="${{ github.event.inputs.reviewers }}"
+          DEFAULT_REVIEWERS="nukulb"
+          USERNAME="${GITHUB_ACTOR}"
           for RELEASE in $RELEASES; do
             BASE_BRANCH="releases/$RELEASE"
-            BRANCH_NAME="${NEW_BRANCH}-${RELEASE}-$(date +%Y%m%d%H%M%S)"
+            BRANCH_NAME="${USERNAME}/cherry-pick-${RELEASE}-$(date +%Y%m%d%H%M%S)"
             git fetch origin
             git checkout "$BASE_BRANCH"
             git pull origin "$BASE_BRANCH"
@@ -52,9 +46,5 @@ jobs:
             git push origin "$BRANCH_NAME"
             PR_TITLE="Cherry-pick to $RELEASE"
             PR_BODY="Cherry-pick of commits: $COMMITS"
-            if [ -n "$REVIEWERS" ]; then
-              gh pr create --base "$BASE_BRANCH" --head "$BRANCH_NAME" --title "$PR_TITLE" --body "$PR_BODY" --label "CHERRY_PICK" --reviewer "$REVIEWERS"
-            else
-              gh pr create --base "$BASE_BRANCH" --head "$BRANCH_NAME" --title "$PR_TITLE" --body "$PR_BODY" --label "CHERRY_PICK"
-            fi
+            gh pr create --base "$BASE_BRANCH" --head "$BRANCH_NAME" --title "$PR_TITLE" --body "$PR_BODY" --reviewer "$DEFAULT_REVIEWERS"
           done
