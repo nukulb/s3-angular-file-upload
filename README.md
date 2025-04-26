@@ -1,7 +1,7 @@
 s3-angular-file-upload
 ======================
 
-Example of S3 file upload using [ng-file-upload](https://github.com/danialfarid/angular-file-upload), angular and node.
+Example of S3 file upload using [ng-file-upload](https://github.com/danialfarid/angular-file-upload), angular and node. 
 
 ##### Demo
 Coming soon.
